@@ -1,0 +1,36 @@
+{
+  "users": [
+    {
+      "personalInfo": {
+        "name": "fypit@mailinator.com",
+        "email": "gosilufuw@mailinator.com",
+        "phoneNumber": "+1 (686) 123-7651"
+      },
+      "planInfo": {
+        "title": "Pro",
+        "price": 15,
+        "duration": "mo"
+      },
+      "addOns": [
+        {
+          "title": "Online Services",
+          "price": 0,
+          "details": "Access to multiplayer games"
+        },
+        {
+          "title": "Large storage",
+          "price": 2,
+          "details": "1T of cloud save"
+        },
+        {
+          "title": "Customizable profile",
+          "price": 0,
+          "details": "Custom theme on your profile"
+        }
+      ],
+      "step": 4,
+      "totalPrice": 17,
+      "id": 1
+    }
+  ]
+}

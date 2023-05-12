@@ -1,8 +1,11 @@
-import { ReactNode, useReducer } from "react";
-import PersonalInfo from "./components/PersonalInfo";
-import SideBar from "./layouts/SideBar";
-import { reducer, initState, dataContext } from "./context/Datacontext";
-import SelectPlan from "./components/SelectPlan";
+import { ReactNode, useReducer } from 'react';
+import PersonalInfo from './components/PersonalInfo';
+import SideBar from './layouts/SideBar';
+import { reducer, initState, dataContext } from './context/Datacontext';
+import SelectPlan from './components/SelectPlan';
+import AddOns from './components/AddOns';
+import FinishUp from './components/FinishUp';
+import SuccessPage from './components/SuccessPage';
 function App() {
   const [state, dispatch] = useReducer(reducer, initState);
   console.log(state);
@@ -12,6 +15,12 @@ function App() {
         return <PersonalInfo />;
       case 2:
         return <SelectPlan />;
+      case 3:
+        return <AddOns />;
+      case 4:
+        return <FinishUp />;
+      case 5:
+        return <SuccessPage />;
 
       default:
         return page;

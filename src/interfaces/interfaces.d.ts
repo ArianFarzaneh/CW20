@@ -11,6 +11,12 @@ type PlanType = {
   };
 };
 
+type AddOnsType = {
+  title: string;
+  price: number;
+  details: string;
+};
+
 type StateType = {
   personalInfo: InfoType;
   step: number;
@@ -19,15 +25,17 @@ type StateType = {
     price: number;
     duration: string;
   };
+  addOns: AddOnsType[];
+  totalPrice: number;
 };
 
 type Action =
   | {
-      type: "go_to_second_step";
+      type: 'go_to_second_step';
       payload: InfoType;
     }
   | {
-      type: "go_to_third_step";
+      type: 'go_to_third_step';
       payload: {
         title: string;
         price: number;
@@ -35,7 +43,17 @@ type Action =
       };
     }
   | {
-      type: "go_to_previous_step";
+      type: 'go_to_forth_step';
+      payload: AddOnsType[];
+    }
+  | {
+      type: 'go_to_finishUp_step';
+    }
+  | {
+      type: 'go_to_Success_step';
+    }
+  | {
+      type: 'go_to_previous_step';
     };
 
 type Dispatch = (value: Action) => void;
@@ -49,4 +67,8 @@ type StepData = {
   number: number;
   step: string;
   title: string;
+};
+type Plans = 'monthly' | 'yearly';
+type setPlan = {
+  plan: string;
 };

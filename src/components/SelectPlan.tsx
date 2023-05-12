@@ -1,76 +1,72 @@
-import React, { useContext, useState } from "react";
-import { BsJoystick } from "react-icons/bs";
-import { IoLogoGameControllerA, IoLogoGameControllerB } from "react-icons/io";
-import Toggle from "./Toggle";
+import React, { useContext, useState } from 'react';
+import { BsJoystick } from 'react-icons/bs';
+import { IoLogoGameControllerA, IoLogoGameControllerB } from 'react-icons/io';
+import Toggle from './Toggle';
 
-import { dataContext } from "../context/Datacontext";
-import { useForm } from "react-hook-form";
+import { dataContext } from '../context/Datacontext';
+import { useForm } from 'react-hook-form';
 
 const plans = {
   monthly: [
     {
-      title: "Arcade",
+      title: 'Arcade',
       price: 9,
-      duration: "mo",
+      duration: 'mo',
       icon: <BsJoystick />,
-      style: "bg-orange-400",
+      style: 'bg-orange-400',
     },
 
     {
-      title: "Advanced",
+      title: 'Advanced',
       price: 12,
-      duration: "mo",
+      duration: 'mo',
       icon: <IoLogoGameControllerA />,
-      style: "bg-pink-400",
+      style: 'bg-pink-400',
     },
     {
-      title: "Pro",
+      title: 'Pro',
       price: 15,
-      duration: "mo",
+      duration: 'mo',
       icon: <IoLogoGameControllerB />,
-      style: "bg-blue-600",
+      style: 'bg-blue-600',
     },
   ],
   yearly: [
     {
-      title: "Arcade",
+      title: 'Arcade',
       price: 90,
-      duration: "yr",
+      duration: 'yr',
       icon: <BsJoystick />,
-      style: "bg-orange-400",
+      style: 'bg-orange-400',
     },
 
     {
-      title: "Advanced",
+      title: 'Advanced',
       price: 120,
-      duration: "yr",
+      duration: 'yr',
       icon: <IoLogoGameControllerA />,
-      style: "bg-pink-400",
+      style: 'bg-pink-400',
     },
     {
-      title: "Pro",
+      title: 'Pro',
       price: 150,
-      duration: "yr",
+      duration: 'yr',
       icon: <IoLogoGameControllerB />,
-      style: "bg-blue-600",
+      style: 'bg-blue-600',
     },
   ],
 };
 
 export default function SelectPlan() {
-  const [plan, setPlan] = useState("monthly");
+  const [plan, setPlan] = useState<Plans>('monthly');
   const { dispatch } = useContext(dataContext);
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<PlanType>();
+  const { register, handleSubmit } = useForm<setPlan>();
   const handleToggle = (value: boolean) => {
-    value ? setPlan("yearly") : setPlan("monthly");
+    value ? setPlan('yearly') : setPlan('monthly');
   };
-  const onSubmit = (data) => {
+  const onSubmit = (data: setPlan) => {
     dispatch({
-      type: "go_to_third_step",
+      type: 'go_to_third_step',
       payload: JSON.parse(data.plan),
     });
   };
@@ -84,7 +80,7 @@ export default function SelectPlan() {
             return (
               <label
                 className="relative w-52 h-64 max-w-sm  border rounded-md shadow-md "
-                htmlFor={item.price}
+                htmlFor={item.price.toString()}
               >
                 <div className="absolute flex  flex-col gap-6  z-50 bg-transparent p-6">
                   <div
@@ -95,17 +91,17 @@ export default function SelectPlan() {
                   <div>
                     <h3 className="text-2xl font-semibold">{item.title}</h3>
                     <span className="text-gray-400 font-semibold">
-                      {item.price + "$/" + item.duration}{" "}
+                      {item.price + '$/' + item.duration}{' '}
                     </span>
                   </div>
-                  <div>{plan === "yearly" ? <p>2 months free</p> : ""}</div>
+                  <div>{plan === 'yearly' ? <p>2 months free</p> : ''}</div>
                 </div>
                 <input
                   type="radio"
                   value={JSON.stringify(item)}
                   className="w-full h-full    focus:bg-blue-50 focus:border focus:border-blue-500  appearance-none "
-                  id={item.price}
-                  {...register("plan", { required: true })}
+                  id={item.price.toString()}
+                  {...register('plan', { required: true })}
                 />
               </label>
             );
@@ -122,15 +118,15 @@ export default function SelectPlan() {
           <button
             onClick={() => {
               dispatch({
-                type: "go_to_previous_step",
+                type: 'go_to_previous_step',
               });
             }}
             type="button"
           >
-            {" Go Back"}
+            {' Go Back'}
           </button>
           <button className=" py-3 px-5 bg-blue-900 text-white rounded-md text-xl self-end w-32">
-            {"Next Step"}
+            {'Next Step'}
           </button>
         </div>
       </form>
